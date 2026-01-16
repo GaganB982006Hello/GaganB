@@ -5,7 +5,7 @@ My personal portfolio website showcasing my projects, skills, and live coding ac
 
 Welcome to my personal portfolio website! This site serves as a central hub to showcase my academic background, technical skills, projects, and real-time coding achievements.
 
-🔗 **Live Demo:** [Click here to view my portfolio](https://gaganb.neocities.org/)
+🔗 **Live Demo:** [Click here to view my portfolio](https://profile-delta-sable.vercel.app/)
 
 ## 🚀 Features
 
