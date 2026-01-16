@@ -260,3 +260,19 @@ async function generateGitHubBoard() {
         if(gridContainer) gridContainer.innerHTML = '<p style="color:#ef4444; padding:10px;">Data unavailable</p>';
     }
 }
+// --- RESUME MODAL LOGIC ---
+function openResume(e) {
+    if(e) e.preventDefault(); // Stop the link from jumping to top
+    const modal = document.getElementById('resume-modal');
+    modal.style.display = 'flex'; // Show modal
+    document.body.style.overflow = 'hidden'; // Stop background from scrolling
+}
+
+function closeResume(event) {
+    // Close if clicking the "X" OR clicking outside the box
+    if (event.target.id === 'resume-modal' || event.target.classList.contains('close-modal')) {
+        const modal = document.getElementById('resume-modal');
+        modal.style.display = 'none'; // Hide modal
+        document.body.style.overflow = 'auto'; // Re-enable scrolling
+    }
+}
