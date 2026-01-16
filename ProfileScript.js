@@ -23,14 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Only run on desktop screens > 900px
         if (window.innerWidth > 900) {
             const scrollY = rightSide.scrollTop;
-            const fadeRate = 400; // Adjusts how fast it fades
+            const fadeRate = 400; 
             let progress = scrollY / fadeRate;
-            
-            // Clamp progress between 0 and 1
             if (progress > 1) progress = 1;
             if (progress < 0) progress = 0;
-            
-            // Apply styles
             leftSide.style.opacity = 1 - progress;
             leftSide.style.width = (30 - (30 * progress)) + '%';
         }
@@ -38,65 +34,73 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- MAIN SCROLL LISTENER ---
     rightSide.addEventListener('scroll', () => {
-        revealOnScroll();    // Run reveal animation
-        collapseSidebar();   // Run photo hiding animation
+        revealOnScroll();
+        collapseSidebar();
     });
     
-    // Initial call to set positions
+    // Initial call
     revealOnScroll();
 
-    // --- DATA FETCHING (Runs once on load) ---
+    // --- DATA FETCHING ---
     generateLeetCodeBoard(); 
     generateGitHubBoard();   
 });
 
-// --- LEETCODE GENERATOR (With Streak Calculation) ---
+// --- HELPER: Fetch with Robust Proxying ---
+async function fetchSafe(url) {
+    const proxies = [
+        '', // 1. Direct (Fastest)
+        'https://corsproxy.io/?', // 2. CORS Proxy (Reliable)
+        'https://api.allorigins.win/raw?url=' // 3. AllOrigins (Backup)
+    ];
+
+    for (const proxy of proxies) {
+        try {
+            // Construct URL: If using AllOrigins, we must encode the target URL
+            const target = proxy.includes('allorigins') ? encodeURIComponent(url) : url;
+            const fullUrl = proxy + target;
+
+            console.log(`Trying: ${fullUrl}`);
+            const controller = new AbortController();
+            const id = setTimeout(() => controller.abort(), 10000); // 10s timeout per try
+            
+            const res = await fetch(fullUrl, { signal: controller.signal });
+            clearTimeout(id);
+            
+            if (res.ok) return await res.json();
+        } catch (e) {
+            console.warn(`Failed with ${proxy || 'Direct'}`);
+            continue; // Try next proxy
+        }
+    }
+    throw new Error('All connection attempts failed');
+}
+
 // --- LEETCODE GENERATOR ---
 async function generateLeetCodeBoard() {
     const username = 'gaganb982006'; 
-    
-    // --- SETTINGS ---
-    // If you used a Streak Freeze, public APIs can't see it. 
-    // Set your actual streak number here to override the calculation.
-    // Set to null to calculate automatically (e.g. const MANUAL_STREAK = null;)
-    const MANUAL_STREAK = null; 
-    
     const gridContainer = document.getElementById('lc-grid');
-    const monthContainer = document.getElementById('lc-months');
     const totalDaysEl = document.getElementById('total-days');
     const streakEl = document.getElementById('lc-streak'); 
     const scrollArea = document.getElementById('heatmap-scroll-area');
+    const monthContainer = document.getElementById('lc-months');
 
     try {
-        const apiEndpoints = [
-            `https://alfa-leetcode-api.onrender.com/${username}/calendar`,
-            `https://leetcode-stats-api.herokuapp.com/${username}`
-        ];
+        // Use Vercel API (Best for Vercel hosting)
+        const data = await fetchSafe(`https://leetcode-api-faisalshohag.vercel.app/${username}`);
         
-        let calendarData = null;
-        
-        for (const endpoint of apiEndpoints) {
-            try {
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 6000);
-                const res = await fetch(endpoint, { signal: controller.signal });
-                clearTimeout(timeoutId);
-                if (res.ok) {
-                    const data = await res.json();
-                    if (data.submissionCalendar) {
-                        calendarData = typeof data.submissionCalendar === 'string' 
-                            ? JSON.parse(data.submissionCalendar) 
-                            : data.submissionCalendar;
-                        break;
-                    }
-                }
-            } catch (err) { continue; }
-        }
-        
-        if (!calendarData) throw new Error('API Error');
+        const calendarData = data.submissionCalendar;
 
-        totalDaysEl.innerText = Object.keys(calendarData).length;
+        if (!calendarData || Object.keys(calendarData).length === 0) {
+             throw new Error('Empty calendar data');
+        }
+
+        // --- RENDER ---
+        const totalActiveDays = Object.keys(calendarData).length;
+        if(totalDaysEl) totalDaysEl.innerText = totalActiveDays;
+        
         gridContainer.innerHTML = ''; 
+        if(monthContainer) monthContainer.innerHTML = '';
 
         const subMap = new Map();
         Object.keys(calendarData).forEach(ts => {
@@ -104,45 +108,32 @@ async function generateLeetCodeBoard() {
             subMap.set(dateStr, calendarData[ts]);
         });
 
-        // --- STREAK CALCULATION ---
+        // Streak Calculation
         let currentStreak = 0;
+        const todayStr = new Date().toISOString().split('T')[0];
+        const yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1);
+        const yesterdayStr = yesterday.toISOString().split('T')[0];
         
-        if (MANUAL_STREAK !== null) {
-            // Use the manual value if set
-            currentStreak = MANUAL_STREAK;
-        } else {
-            // Calculate automatically
-            const todayStr = new Date().toISOString().split('T')[0];
-            const yesterday = new Date(); 
-            yesterday.setDate(yesterday.getDate() - 1);
-            const yesterdayStr = yesterday.toISOString().split('T')[0];
+        const sortedKeys = Array.from(subMap.keys()).sort();
+        const lastSub = sortedKeys[sortedKeys.length - 1];
 
-            // Sort dates to find last submission
-            const sortedDates = Array.from(subMap.keys()).sort();
-            const lastSubmission = sortedDates[sortedDates.length - 1];
-
-            if (lastSubmission === todayStr || lastSubmission === yesterdayStr) {
-                currentStreak = 1;
-                let checkDate = new Date(lastSubmission);
-                while (true) {
-                    checkDate.setDate(checkDate.getDate() - 1);
-                    const prevDateStr = checkDate.toISOString().split('T')[0];
-                    if (subMap.has(prevDateStr)) {
-                        currentStreak++;
-                    } else {
-                        break;
-                    }
-                }
+        // Check if streak is alive (submitted today or yesterday)
+        if (lastSub === todayStr || lastSub === yesterdayStr) {
+            currentStreak = 1;
+            let checkDate = new Date(lastSub);
+            while(true) {
+                checkDate.setDate(checkDate.getDate() - 1);
+                const prevStr = checkDate.toISOString().split('T')[0];
+                if(subMap.has(prevStr)) currentStreak++;
+                else break;
             }
         }
-        
         if(streakEl) streakEl.innerText = currentStreak;
 
-        // --- RENDER GRID ---
+        // Grid Render
         const today = new Date();
         const startDate = new Date();
         startDate.setDate(today.getDate() - 365);
-        
         const startDayOfWeek = startDate.getDay(); 
         
         for(let i=0; i<startDayOfWeek; i++) {
@@ -152,7 +143,6 @@ async function generateLeetCodeBoard() {
         }
 
         let currentMonth = -1;
-        
         for(let i=0; i<=365; i++) {
             const d = new Date(startDate);
             d.setDate(startDate.getDate() + i);
@@ -178,19 +168,18 @@ async function generateLeetCodeBoard() {
                 label.innerText = monthName;
                 label.className = 'month-label';
                 label.style.left = `${colIndex * 13}px`; 
-                monthContainer.appendChild(label);
+                if(monthContainer) monthContainer.appendChild(label);
             }
         }
         
-        setTimeout(() => { 
-            if(scrollArea) scrollArea.scrollLeft = scrollArea.scrollWidth; 
-        }, 100);
+        setTimeout(() => { if(scrollArea) scrollArea.scrollLeft = scrollArea.scrollWidth; }, 100);
 
     } catch (e) {
-        console.error('LeetCode fetch error');
+        console.error('LeetCode Failed:', e);
         if(gridContainer) gridContainer.innerHTML = '<p style="color:#ef4444; padding:10px;">Data unavailable</p>';
     }
 }
+
 // --- GITHUB ACTIVITY GENERATOR ---
 async function generateGitHubBoard() {
     const username = 'GaganB982006Hello'; 
@@ -201,22 +190,20 @@ async function generateGitHubBoard() {
     const scrollArea = document.getElementById('gh-heatmap-scroll-area');
 
     try {
-        const res = await fetch(`https://github-contributions-api.jogruber.de/v4/${username}?y=last`);
-        if (!res.ok) throw new Error('GitHub API failed');
-        
-        const data = await res.json();
+        const data = await fetchSafe(`https://github-contributions-api.jogruber.de/v4/${username}?y=last`);
         const contributions = data.contributions; 
 
-        if (!contributions) throw new Error('No data');
+        if (!contributions) throw new Error('No GitHub data');
 
         const total = contributions.reduce((acc, day) => acc + day.count, 0);
         if(totalEl) totalEl.innerText = total;
 
         let streak = 0;
         const reversed = [...contributions].reverse();
-        // Allow streak if today has 0 but yesterday had activity
         const todayStr = new Date().toISOString().split('T')[0];
-        if (reversed[0].date === todayStr && reversed[0].count === 0) {
+        
+        // Handle timezones: if today is 0 but yesterday has data, don't break streak immediately
+        if (reversed.length > 0 && reversed[0].date === todayStr && reversed[0].count === 0) {
              reversed.shift(); 
         }
 
@@ -229,7 +216,7 @@ async function generateGitHubBoard() {
         if(gridContainer) gridContainer.innerHTML = '';
         if(monthContainer) monthContainer.innerHTML = '';
 
-        const startDate = new Date(contributions[0].date);
+        const startDate = contributions.length > 0 ? new Date(contributions[0].date) : new Date();
         const startDayOfWeek = startDate.getDay(); 
 
         for (let i = 0; i < startDayOfWeek; i++) {
@@ -258,7 +245,6 @@ async function generateGitHubBoard() {
             if (dateObj.getDate() <= 7 && dateObj.getMonth() !== currentMonth) {
                 currentMonth = dateObj.getMonth();
                 const monthName = dateObj.toLocaleString('default', { month: 'short' });
-                
                 const label = document.createElement('div');
                 label.innerText = monthName;
                 label.className = 'month-label';
@@ -267,12 +253,10 @@ async function generateGitHubBoard() {
             }
         });
 
-        setTimeout(() => { 
-            if(scrollArea) scrollArea.scrollLeft = scrollArea.scrollWidth; 
-        }, 100);
+        setTimeout(() => { if(scrollArea) scrollArea.scrollLeft = scrollArea.scrollWidth; }, 100);
 
     } catch (e) {
-        console.error('GitHub fetch error');
+        console.error('GitHub Failed:', e);
         if(gridContainer) gridContainer.innerHTML = '<p style="color:#ef4444; padding:10px;">Data unavailable</p>';
     }
 }
