@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,19 +10,46 @@
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-weight='bold' fill='%23ffffff'>𝐆</text></svg>">
 </head>
+
 <body>
-    <div class="left-side">
-    <div class="photo-frame">
-        <div class="glow-ring"></div>
-        <div class="profile-image"></div>
-    </div>
-    </div>
-    <div class="right-side">
-        <div class="typewriter-container">
-            <div class="typewriter">
-                <h1>Hi, I am Gagan B</h1>
-            </div>
+    <nav class="navbar">
+        <div class="nav-logo">Gagan B</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="#Education">Education</a></li>
+            <li><a href="#Skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#Resume">Resume</a></li>
+            <li><a href="#Social Media">🌐</a></li>
+            <li><a href="#contact">Send 📫</a></li>
+        </ul>
+        <div class="nav-socials">
+            <a href="https://www.linkedin.com/in/gaganb982006/" target="_blank">LinkedIn</a>
+            <a href="mailto:gaganb982006@gmail.com">Email</a>
+            <button id="theme-toggle" class="theme-btn">🌙</button>
         </div>
+    </nav>
+
+    <div class="left-side">
+        <div class="photo-frame">
+            <div class="glow-ring"></div>
+            <div class="profile-image"></div>
+        </div>
+    </div>
+
+
+    <div class="right-side">
+        <section id="home">
+
+            <div class="typewriter-container">
+                <div class="typewriter">
+                    <h1>Hi, I am Gagan B</h1>
+                </div>
+            </div>
+        </section>
         <div style="text-align: center; margin: 40px 0;">
             <svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
                 <defs>
@@ -66,7 +94,7 @@
                 contribute my skills in Java, C++, and Python to a forward-thinking organization</p>
         </section>
 
-        <section class="reveal">
+        <section class="reveal" id="profile">
             <h2>Profile's</h2>
             <div class="contact-box">
                 <ul>
@@ -86,7 +114,7 @@
             </div>
         </section>
 
-        <section>
+        <section id="Education">
             <h2>Educational Background</h2>
             <div style="text-align: center; margin: 20px 0;">
                 <svg width="120" height="120" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -134,7 +162,7 @@
             </div>
         </section>
 
-        <section>
+        <section id="Skills">
             <h2>Skills</h2>
             <div style="text-align: center; margin: 20px 0;">
                 <svg width="120" height="80" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
@@ -174,7 +202,7 @@
                         class="badge">Jupyter</span> <span class="badge">GitHub</span></p>
             </div>
         </section>
-        <section>
+        <section id="experience">
             <h2>Experience/Internship</h2>
             <div class="contact-box">
                 <div class="card-title">TechSaksham</div>
@@ -186,13 +214,16 @@
                 <p class="card-text">- A joint CSR initiative of Microsoft & SAP,implemented by Edunet Foundation</p>
                 <p class="card-text">Completed a 6-week internship focused on AI and Machine Learning. Gained hands-on
                     experience in developing AI models, data analysis, and implementing machine learning algorithms.
-                    Collaborated on projects that enhanced my understanding of AI applications in real-world scenarios.</p>
-                    <div class="card-subtitle"><a href="https://drive.google.com/file/d/1OAGvujBzQl5Y8xIVlyuDNZwXcZjhx2A0/view?usp=sharing">Click to view certificate 👆</a></div>
+                    Collaborated on projects that enhanced my understanding of AI applications in real-world scenarios.
+                </p>
+                <div class="card-subtitle"><a
+                        href="https://drive.google.com/file/d/1OAGvujBzQl5Y8xIVlyuDNZwXcZjhx2A0/view?usp=sharing">Click
+                        to view certificate 👆</a></div>
             </div>
-            
+
         </section>
 
-        <section>
+        <section id="projects">
             <h2>Projects</h2>
             <div style="text-align: center; margin: 20px 0;">
                 <svg width="100" height="150" viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
@@ -249,7 +280,7 @@
             </div>
         </section>
 
-        <section>
+        <section id="certifications">
             <h2>Certifications</h2>
             <div style="text-align: center; margin: 20px 0;">
                 <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -348,7 +379,7 @@
             </div>
         </section>
 
-        <section>
+        <section id="Resume">
             <h2>Resume</h2>
             <div class="contact-box" style="text-align: center;">
                 <p>Check out my full resume below:</p>
@@ -364,7 +395,7 @@
             </div>
         </section>
 
-        <section>
+        <section id="Social Media">
             <h2>Social Media 🌐</h2>
             <h4 class="card-title"> 𝗙𝗼𝗹𝗹𝗼𝘄 𝗺𝗲 ╰┈➤ @</h4>
             <div class="contact-box">
@@ -378,7 +409,7 @@
         </section>
 
 
-        <section class="reveal">
+        <section class="reveal" id="contact">
             <h2>Start a Conversation 💬</h2>
 
             <div class="conversation-container">
@@ -395,7 +426,7 @@
                         <div class="input-group">
                             <input type="text" name="subject" placeholder="Subject" required>
                         </div>
-                        
+
                         <div class="input-group">
                             <input type="tel" name="phone" placeholder="Phone Number" required>
                         </div>
@@ -408,7 +439,7 @@
                                 required></textarea>
                         </div>
                         <button type="submit" class="send-btn">Send Message 🚀</button>
-            
+
                     </form>
                 </div>
 
@@ -444,14 +475,15 @@
                         <span class="icon">🔗</span>
                         <div class="details">
                             <span class="label">LinkedIn</span>
-                            <a href="https://www.linkedin.com/in/gaganb982006/" target="_blank" style="color:#0066cc;">View Profile</a>
+                            <a href="https://www.linkedin.com/in/gaganb982006/" target="_blank"
+                                style="color:#0066cc;">View Profile</a>
                         </div>
                     </div>
                 </div>
 
             </div>
         </section>
-        
+
         <div class="robot-footer">
             <div class="robot-icon">🤖</div>
             <div class="robot-message">
@@ -471,11 +503,11 @@
 
     </div>
     <a href="https://wa.me/919003282170" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-    <svg width="35" height="35" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.438 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-    </svg>
-</a>
-
+        <svg width="35" height="35" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.438 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
+    </a>
     <script src="ProfileScript.js"></script>
 
 </body>
@@ -484,7 +516,3 @@
 </body>
 
 </html>
-
-
-
-
