@@ -54,7 +54,7 @@ body {
 .profile-image {
     width: 100%;
     height: 100%;
-    background-image: url('profile.jpg');
+    background-image: url('profile1.jpg');
     background-size: cover;
     background-position: center;
     border-radius: 20px;
@@ -74,6 +74,16 @@ body {
   75% { border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%; }
   100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
 }
+/* --- RIGHT SIDE (TEXT AREA) --- */
+.right-side {
+    flex: 1;
+    padding: 50px;
+    overflow-y: auto;
+    background-color: #0f172a;
+    color: #cbd5e1;
+    perspective: 1000px;
+}
+
 /* --- ANIMATED NAME --- */
 .typewriter-container {
     display: inline-block;
@@ -825,4 +835,3 @@ input:focus, textarea:focus {
         width: auto;
     }
 }
-
