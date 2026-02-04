@@ -54,7 +54,7 @@ body {
 .profile-image {
     width: 100%;
     height: 100%;
-    background-image: url('profile1.jpg');
+    background-image: url('profile.jpg');
     background-size: cover;
     background-position: center;
     border-radius: 20px;
@@ -835,3 +835,4 @@ input:focus, textarea:focus {
         width: auto;
     }
 }
+
