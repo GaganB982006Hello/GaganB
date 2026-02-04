@@ -15,11 +15,18 @@ body {
     color: #e2e8f0;
 }
 
+section {
+    /* This ensures the section stops 80px below the top, 
+       leaving room for your fixed navbar */
+    scroll-margin-top: 80px;
+}
+
 /* --- LEFT SIDE (IMAGE AREA) --- */
 /* --- MODERNIZED PHOTO AREA --- */
 .left-side {
     width: 35%;
-    background-color: #0f172a; /* Matches your body background */
+    background-color: #0f172a;
+    /* Matches your body background */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,7 +34,7 @@ body {
     z-index: 10;
     /* This creates a unique slanted edge on the right */
     clip-path: polygon(0% 0%, 100% 0%, 85% 100%, 0% 100%);
-    border-right: none; 
+    border-right: none;
 }
 
 .photo-frame {
@@ -45,7 +52,8 @@ body {
     width: 110%;
     height: 110%;
     background: linear-gradient(45deg, #0066cc, #10b981, #eb1212);
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; /* Organic moving shape */
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    /* Organic moving shape */
     filter: blur(20px);
     opacity: 0.6;
     animation: morph 8s linear infinite;
@@ -68,12 +76,27 @@ body {
 
 /* --- KEYFRAME FOR THE UNIQUE MOVING GLOW --- */
 @keyframes morph {
-  0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-  25% { border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%; }
-  50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
-  75% { border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%; }
-  100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+    0% {
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    }
+
+    25% {
+        border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
+    }
+
+    50% {
+        border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
+    }
+
+    75% {
+        border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
+    }
+
+    100% {
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    }
 }
+
 /* --- RIGHT SIDE (TEXT AREA) --- */
 .right-side {
     flex: 1;
@@ -639,20 +662,23 @@ li {
         opacity: 1;
     }
 }
+
 /* --- CONVERSATION BOX STYLES --- */
 .form-container {
     background: #1e293b;
     padding: 30px;
     border-radius: 15px;
-    border-top: 4px solid #10b981; /* Green top border for "Start" vibe */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border-top: 4px solid #10b981;
+    /* Green top border for "Start" vibe */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .input-group {
     margin-bottom: 20px;
 }
 
-input, textarea {
+input,
+textarea {
     width: 100%;
     padding: 15px;
     background: #0f172a;
@@ -664,9 +690,11 @@ input, textarea {
     transition: all 0.3s ease;
 }
 
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
     outline: none;
-    border-color: #10b981; /* Green focus color */
+    border-color: #10b981;
+    /* Green focus color */
     box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
     transform: translateY(-2px);
 }
@@ -674,7 +702,8 @@ input:focus, textarea:focus {
 .send-btn {
     width: 100%;
     padding: 15px;
-    background: #10b981; /* Green button */
+    background: #10b981;
+    /* Green button */
     color: white;
     border: none;
     border-radius: 30px;
@@ -691,26 +720,31 @@ input:focus, textarea:focus {
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
 }
+
 /* --- SPLIT CONVERSATION LAYOUT --- */
 .conversation-container {
     display: flex;
-    gap: 30px; /* Space between Form and Info */
+    gap: 30px;
+    /* Space between Form and Info */
     background: #1e293b;
     padding: 30px;
     border-radius: 15px;
     border-top: 4px solid #10b981;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 /* LEFT COLUMN: Form */
 .form-column {
-    flex: 2; /* Takes up 66% of the width */
+    flex: 2;
+    /* Takes up 66% of the width */
 }
 
 /* RIGHT COLUMN: Info Box */
 .info-column {
-    flex: 1; /* Takes up 33% of the width */
-    background: #0f172a; /* Darker background for contrast */
+    flex: 1;
+    /* Takes up 33% of the width */
+    background: #0f172a;
+    /* Darker background for contrast */
     padding: 25px;
     border-radius: 10px;
     border: 1px solid #334155;
@@ -758,6 +792,7 @@ input:focus, textarea:focus {
     .conversation-container {
         flex-direction: column;
     }
+
     .info-column {
         margin-top: 20px;
     }
@@ -767,13 +802,16 @@ input:focus, textarea:focus {
     display: flex;
     align-items: center;
     background: #0f172a;
-    border: 2px solid #10b981; /* Glowing green border */
+    border: 2px solid #10b981;
+    /* Glowing green border */
     border-radius: 12px;
     padding: 15px 25px;
     margin-top: 40px;
     margin-bottom: 20px;
-    box-shadow: 0 0 20px rgba(16, 185, 129, 0.2); /* Green glow */
-    font-family: 'Courier New', Courier, monospace; /* Robot/terminal font */
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+    /* Green glow */
+    font-family: 'Courier New', Courier, monospace;
+    /* Robot/terminal font */
 }
 
 .robot-icon {
@@ -783,39 +821,71 @@ input:focus, textarea:focus {
 }
 
 .robot-message p {
-    color: #10b981; /* Green terminal text */
+    color: #10b981;
+    /* Green terminal text */
     font-size: 1.1em;
     font-weight: bold;
     margin: 0;
     white-space: nowrap;
     overflow: hidden;
-    border-right: 3px solid #10b981; /* The blinking cursor █ */
-    
+    border-right: 3px solid #10b981;
+    /* The blinking cursor █ */
+
     /* --- UPDATED ANIMATION SETTINGS --- */
     width: 0;
     /* Changed: Duration increased to 8s, 'forwards' changed to 'infinite', keyframe name changed */
-    animation: 
+    animation:
         typeAndDelete 8s steps(60, end) infinite,
         blinkCursor 0.75s step-end infinite;
 }
 
 /* Animations */
 @keyframes robotPulse {
-    from { transform: scale(1); text-shadow: 0 0 5px #10b981; }
-    to { transform: scale(1.1); text-shadow: 0 0 15px #10b981; }
+    from {
+        transform: scale(1);
+        text-shadow: 0 0 5px #10b981;
+    }
+
+    to {
+        transform: scale(1.1);
+        text-shadow: 0 0 15px #10b981;
+    }
 }
 
 /* --- NEW KEYFRAMES FOR CONTINUOUS TYPING --- */
 @keyframes typeAndDelete {
-    0% { width: 0; }      /* Start empty */
-    40% { width: 100%; }  /* Finish typing out */
-    70% { width: 100%; }  /* Pause here so it can be read */
-    100% { width: 0; }    /* Delete back to empty */
+    0% {
+        width: 0;
+    }
+
+    /* Start empty */
+    40% {
+        width: 100%;
+    }
+
+    /* Finish typing out */
+    70% {
+        width: 100%;
+    }
+
+    /* Pause here so it can be read */
+    100% {
+        width: 0;
+    }
+
+    /* Delete back to empty */
 }
 
 @keyframes blinkCursor {
-    from, to { border-color: transparent; }
-    50% { border-color: #10b981; }
+
+    from,
+    to {
+        border-color: transparent;
+    }
+
+    50% {
+        border-color: #10b981;
+    }
 }
 
 /* Responsive for small screens */
@@ -824,18 +894,199 @@ input:focus, textarea:focus {
         flex-direction: column;
         text-align: center;
     }
+
     .robot-icon {
         margin-right: 0;
         margin-bottom: 10px;
     }
+
     .robot-message p {
-        white-space: normal; /* Allow wrapping on small phones */
-        border-right: none;
-        animation: none; /* Disable typing effect on very small screens */
-        width: auto;
+        white-space: normal;
+        /* Allow wrapping on small phones */
     }
 }
 
+/* --- THEME TOGGLE BUTTON --- */
+.theme-btn {
+    background: none;
+    border: 2px solid #0066cc;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 50%;
+    margin-left: 15px;
+    transition: all 0.3s ease;
+}
+
+.theme-btn:hover {
+    background-color: #0066cc;
+    transform: rotate(15deg) scale(1.1);
+}
+
+/* --- LIGHT MODE OVERRIDES --- */
+body.light-mode {
+    background-color: #f8fafc;
+    /* Slate 50 */
+    color: #000000;
+    /* Pure Black as requested */
+}
+
+/* Navbar Light Mode */
+body.light-mode .navbar {
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .nav-logo {
+    color: #000000;
+    /* Black Logo */
+}
+
+body.light-mode .nav-links a {
+    color: #000000;
+    /* Black Links */
+    font-weight: 600;
+    /* Bolder for visibility */
+}
+
+body.light-mode .nav-links a:hover {
+    color: #0066cc;
+    /* Keep hover color */
+}
+
+body.light-mode .theme-btn {
+    border-color: #000000;
+    color: #000000;
+}
+
+body.light-mode .theme-btn:hover {
+    background-color: #000000;
+    color: #fff;
+}
+
+/* Layout Light Mode */
+body.light-mode .left-side,
+body.light-mode .right-side {
+    background-color: #f8fafc;
+}
+
+body.light-mode .right-side {
+    color: #000000;
+}
+
+/* Headings & Text */
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode .typewriter h1 {
+    color: #000000;
+}
+
+body.light-mode h2 {
+    border-bottom-color: #ef4444;
+    /* Red */
+}
+
+body.light-mode .card-subtitle,
+body.light-mode li {
+    color: #000000;
+}
+
+/* Cards & Boxes Light Mode */
+body.light-mode .contact-box,
+body.light-mode .card,
+body.light-mode .leetcode-card,
+body.light-mode .conversation-container,
+body.light-mode .form-container,
+body.light-mode .robot-footer,
+body.light-mode .info-column {
+    background-color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    /* Slightly stronger shadow */
+    border: 1px solid #000000;
+    /* distinct border */
+    color: #000000;
+}
+
+/* Ensure links inside contact box are visible (Black) */
+body.light-mode .contact-box a,
+body.light-mode .card a {
+    color: #000000;
+    border-bottom-color: #ef4444;
+    /* Keep the red underline accent */
+}
+
+/* Ensure specific text classes are black */
+body.light-mode .card-text,
+body.light-mode .card-title,
+body.light-mode .card-subtitle {
+    color: #000000;
+}
+
+/* Ensure info column in form blends in or stands out appropriately */
+body.light-mode .info-column {
+    background-color: #f1f5f9;
+    border-color: #000000;
+}
+
+/* Icons in Contact Info */
+body.light-mode .info-item .icon {
+    background-color: #e2e8f0;
+}
+
+/* Inputs Light Mode */
+body.light-mode input,
+body.light-mode textarea {
+    background-color: #f1f5f9;
+    color: #000000;
+    border-color: #000000;
+}
+
+body.light-mode input:focus,
+body.light-mode textarea:focus {
+    background-color: #ffffff;
+    border-color: #000000;
+}
+
+/* Badges */
+body.light-mode .badge {
+    background-color: #e2e8f0;
+    color: #000000;
+    border-color: #000000;
+}
+
+body.light-mode .badge:hover {
+    background-color: #000000;
+    color: #fff;
+}
+
+/* SVG Fills need to adapt? 
+   Most SVGs use specific colors, but if any use currentColor or inherit, they will adapt.
+   For the rectangles in the SVGs that were dark slate (#1e293b), we might want to change them.
+   This is tricky without changing the SVG code dynamically, but we can target them via CSS if they are inline?
+   No, inline attributes usually win unless !important is used or we used classes.
+   For now, the dark SVGs might look like "dark tech" on light mode, which is acceptable.
+*/
+
+/* Scrollbar for Light Mode */
+body.light-mode *::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+body.light-mode *::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border: 3px solid #f1f5f9;
+}
+
+body.light-mode *::-webkit-scrollbar-thumb:hover {
+    background-color: #94a3b8;
+}
+
+/* Robot text */
+body.light-mode .robot-message p {
+    color: #059669;
+    border-right-color: #059669;
+}
 
 /* WhatsApp Floating Button */
 .whatsapp-float {
@@ -843,8 +1094,8 @@ input:focus, textarea:focus {
     width: 60px;
     height: 60px;
     /* Increased spacing from the edge */
-    bottom: 50px; 
-    right: 50px; 
+    bottom: 50px;
+    right: 50px;
     background-color: #25d366;
     border-radius: 50px;
     display: flex;
@@ -854,9 +1105,11 @@ input:focus, textarea:focus {
     z-index: 1000;
     transition: all 0.3s ease;
 }
+
 .whatsapp-float:hover {
     transform: scale(1.1) translateY(-5px);
-    background-color: #128c7e; /* Darker WhatsApp shade */
+    background-color: #128c7e;
+    /* Darker WhatsApp shade */
     box-shadow: 0 10px 20px rgba(37, 211, 102, 0.4);
 }
 
@@ -873,8 +1126,15 @@ input:focus, textarea:focus {
 }
 
 @keyframes whatsappPulse {
-    0% { transform: scale(1); opacity: 0.6; }
-    100% { transform: scale(1.5); opacity: 0; }
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
 }
 
 /* Adjust for Mobile so it doesn't block content */
@@ -884,5 +1144,84 @@ input:focus, textarea:focus {
         height: 55px;
         bottom: 40px;
         right: 40px;
+    }
+}
+
+/* Sticky Navigation Bar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    background: rgba(15, 23, 42, 0.8);
+    /* Semi-transparent dark */
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    /* Glass effect */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 2000;
+    /* Stays above everything */
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #0066cc;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #cbd5e1;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #10b981;
+    /* Matches your green accents */
+}
+
+.nav-socials a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #fff;
+    background: #0066cc;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    transition: transform 0.2s;
+}
+
+.nav-socials a:hover {
+    transform: scale(1.05);
+    background: #10b981;
+}
+
+/* Adjust top padding of the right-side so content isn't hidden behind the nav */
+.right-side {
+    padding-top: 100px !important;
+}
+
+/* Mobile Responsive Nav */
+@media screen and (max-width: 900px) {
+    .nav-links {
+        display: none;
+        /* Usually hidden behind a hamburger menu on mobile */
+    }
+
+    .navbar {
+        padding: 0 20px;
     }
 }
