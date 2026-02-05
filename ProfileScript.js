@@ -299,3 +299,18 @@ if (localStorage.getItem('theme') === 'light') {
     document.body.classList.add('light-mode');
     updateThemeIcon(true);
 }
+
+// --- SIDEBAR TOGGLE LOGIC ---
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar) {
+        sidebar.classList.toggle('active');
+        
+        // Stops the page from scrolling when the menu is open
+        if (sidebar.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+    }
+}
