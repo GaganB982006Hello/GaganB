@@ -926,8 +926,8 @@ textarea:focus {
 
 /* --- LIGHT MODE OVERRIDES --- */
 body.light-mode {
-    background-color: #f8fafc;
-    /* Slate 50 */
+    background-color: #ffffff;
+    /* Pure White */
     color: #000000;
     /* Pure Black as requested */
 }
@@ -968,7 +968,7 @@ body.light-mode .theme-btn:hover {
 /* Layout Light Mode */
 body.light-mode .left-side,
 body.light-mode .right-side {
-    background-color: #f8fafc;
+    background-color: #ffffff;
 }
 
 body.light-mode .right-side {
@@ -1060,13 +1060,32 @@ body.light-mode .badge:hover {
     color: #fff;
 }
 
-/* SVG Fills need to adapt? 
-   Most SVGs use specific colors, but if any use currentColor or inherit, they will adapt.
-   For the rectangles in the SVGs that were dark slate (#1e293b), we might want to change them.
-   This is tricky without changing the SVG code dynamically, but we can target them via CSS if they are inline?
-   No, inline attributes usually win unless !important is used or we used classes.
-   For now, the dark SVGs might look like "dark tech" on light mode, which is acceptable.
-*/
+/* Hide the dropdown content by default */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #0f172a;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Show the menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Style the links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    display: block;
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background-color: #0e0f11;
+}
 
 /* Scrollbar for Light Mode */
 body.light-mode *::-webkit-scrollbar-track {
@@ -1086,6 +1105,40 @@ body.light-mode *::-webkit-scrollbar-thumb:hover {
 body.light-mode .robot-message p {
     color: #059669;
     border-right-color: #059669;
+}
+
+/* --- LIGHT MODE TEXT HOVER EFFECT --- */
+body.light-mode p:hover,
+body.light-mode h1:hover,
+body.light-mode h2:hover,
+body.light-mode h3:hover,
+body.light-mode h4:hover,
+body.light-mode h5:hover,
+body.light-mode h6:hover,
+body.light-mode li:hover,
+body.light-mode span:hover,
+body.light-mode div.card-text:hover,
+body.light-mode div.card-title:hover,
+body.light-mode div.card-subtitle:hover {
+    color: #0066cc;
+    transition: color 0.3s ease;
+    cursor: default;
+}
+
+/* Light Mode Dropdown */
+body.light-mode .dropdown-content {
+    background-color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e8f0;
+}
+
+body.light-mode .dropdown-content a {
+    color: #000000;
+}
+
+body.light-mode .dropdown-content a:hover {
+    background-color: #f1f5f9;
+    color: #0066cc;
 }
 
 /* WhatsApp Floating Button */
