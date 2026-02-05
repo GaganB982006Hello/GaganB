@@ -23,7 +23,128 @@ menu-toggle {
     cursor: pointer;
     margin-right: 0;
 }
+/* --- SIDEBAR MENU STYLES --- */
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    margin-right: 20px;
+}
 
+.menu-toggle span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: #cbd5e1;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle:hover span {
+    background-color: #10b981;
+}
+
+/* Sidebar Container */
+.sidebar-menu {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    /* Hidden by default */
+    width: 280px;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.95);
+    /* Dark translucent */
+    backdrop-filter: blur(10px);
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.3);
+    z-index: 3000;
+    /* Above navbar */
+    transition: left 0.3s ease-in-out;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-menu.open {
+    left: 0;
+}
+
+.sidebar-menu a {
+    text-decoration: none;
+    color: #cbd5e1;
+    font-size: 1.2rem;
+    padding: 15px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.2s;
+}
+
+.sidebar-menu a:hover {
+    color: #10b981;
+    background: rgba(255, 255, 255, 0.05);
+    padding-left: 20px;
+}
+
+/* Close Button in Sidebar */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2.5rem;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.close-btn:hover {
+    color: #ef4444;
+    transform: rotate(90deg);
+}
+
+/* Overlay */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2999;
+    /* Below sidebar, above everything else */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Light Mode Overrides for Sidebar */
+body.light-mode .menu-toggle span {
+    background-color: #000000;
+}
+
+body.light-mode .sidebar-menu {
+    background: rgba(255, 255, 255, 0.95);
+    border-right: 1px solid #e2e8f0;
+}
+
+body.light-mode .sidebar-menu a {
+    color: #000000;
+    border-bottom-color: rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .sidebar-menu a:hover {
+    color: #0066cc;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .close-btn {
+    color: #000000;
+}
 .nav-brand {
     display: flex;
     align-items: center;
