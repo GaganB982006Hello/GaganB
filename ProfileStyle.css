@@ -1287,6 +1287,7 @@ body.light-mode .dropdown-content a:hover {
     color: #0077B5;
 }
 
+
 /* Ensure the 'in' text is positioned perfectly */
 .linkedin span {
     margin-bottom: 2px;
@@ -1404,4 +1405,133 @@ body.light-mode .dropdown-content a:hover {
     .navbar {
         padding: 0 20px;
     }
+}
+
+/* --- 1. NAVBAR LAYOUT --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    display: flex !important;
+    justify-content: space-between !important;
+    /* Pushes left group and right group apart */
+    align-items: center;
+    padding: 0 30px !important;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 2000;
+}
+
+/* --- 2. LEFT GROUP (Bars + Logo) --- */
+.nav-left-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* This controls the tight space between bars and G */
+}
+
+.menu-bars {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 18px;
+    cursor: pointer;
+    z-index: 2001;
+}
+
+.menu-bars span {
+    width: 100%;
+    height: 3px;
+    background-color: #0066cc;
+    /* Blue color for the bars */
+    border-radius: 4px;
+}
+
+/* --- 3. TRANSLUCENT SIDEBAR --- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    /* Hidden off-screen */
+    width: 280px;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.5) !important;
+    backdrop-filter: blur(40px) saturate(150%) !important;
+    /* Strong frosted glass */
+    -webkit-backdrop-filter: blur(40px) saturate(150%) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 3000;
+    display: flex;
+    flex-direction: column;
+    padding: 80px 30px;
+}
+
+.sidebar.active {
+    left: 0;
+    /* Slides into view */
+}
+
+.sidebar-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.4rem;
+    padding: 15px 0;
+    display: block;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+/* Styling for the sidebar title */
+.sidebar-title {
+    color: #0066cc;
+    /* Matches your logo and bars */
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    /* Space before the links start */
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    /* Subtle divider */
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 800;
+}
+
+/* Ensure the sidebar padding is adjusted for the new title */
+.sidebar {
+    /* ... existing styles ... */
+    padding: 40px 30px;
+    /* Slightly reduced top padding */
+}
+
+/* --- SIDEBAR LINK HOVER EFFECT --- */
+.sidebar-links a {
+    color: white;
+    /* Original color */
+    text-decoration: none;
+    font-size: 1.4rem;
+    padding: 15px 0;
+    display: block;
+    /* Smoothly fades the color change over 0.3 seconds */
+    transition: color 0.3s ease;
+}
+
+/* This is the part that changes the color to green on hover */
+.sidebar-links a:hover {
+    color: #10b981 !important;
+    /* Turns letters Green */
+    padding-left: 10px;
+    /* Optional: subtle slide effect to the right */
 }
