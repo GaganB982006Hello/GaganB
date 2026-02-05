@@ -14,7 +14,21 @@ body {
     background-color: #0f172a;
     color: #e2e8f0;
 }
+menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    margin-right: 0;
+}
 
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
 section {
     /* This ensures the section stops 80px below the top, 
        leaving room for your fixed navbar */
@@ -1278,3 +1292,4 @@ body.light-mode .dropdown-content a:hover {
         padding: 0 20px;
     }
 }
+
