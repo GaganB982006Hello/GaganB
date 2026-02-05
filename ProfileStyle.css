@@ -55,9 +55,11 @@ menu-toggle {
     /* Hidden by default */
     width: 280px;
     height: 100%;
-    background: rgba(15, 23, 42, 0.95);
-    /* Dark translucent */
-    backdrop-filter: blur(10px);
+    
+    background: rgba(15, 23, 42, 0.7);
+    /* More translucent (0.95 -> 0.7) */
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
     box-shadow: 4px 0 15px rgba(0, 0, 0, 0.3);
     z-index: 3000;
     /* Above navbar */
@@ -1413,4 +1415,5 @@ body.light-mode .dropdown-content a:hover {
         padding: 0 20px;
     }
 }
+
 
