@@ -1535,3 +1535,26 @@ body.light-mode .dropdown-content a:hover {
     padding-left: 10px;
     /* Optional: subtle slide effect to the right */
 }
+
+/* --- LIGHT MODE SIDEBAR OVERRIDES --- */
+
+/* Changes letters to black in Light Mode */
+body.light-mode .sidebar-links a {
+    color: #000000 !important; 
+}
+
+/* Changes the Sidebar Title to black in Light Mode */
+body.light-mode .sidebar-title {
+    color: #000000 !important;
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Ensures the hover effect still works in Light Mode */
+body.light-mode .sidebar-links a:hover {
+    color: #10b981 !important; /* Stays green on hover */
+}
+
+/* Adjusts the Close Button for Light Mode visibility */
+body.light-mode .close-btn {
+    color: #000000 !important;
+}
