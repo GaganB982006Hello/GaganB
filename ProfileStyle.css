@@ -1558,3 +1558,24 @@ body.light-mode .sidebar-links a:hover {
 body.light-mode .close-btn {
     color: #000000 !important;
 }
+
+/* --- TEXT LOGO STYLING --- */
+.logo-text {
+    color: white;
+    font-weight: 900;
+    font-size: 1.2rem;
+    font-family: 'Arial Black', sans-serif;
+    line-height: 1;
+}
+
+/* Ensure the circles have their background colors */
+.leetcode { background: #FFA116; }
+.github { background: #181717; }
+.hackerrank { background: #2EC866; }
+.codechef { background: #5B4638; }
+
+/* Keep the pill borders consistent */
+.lc-border { background-image: linear-gradient(white, white), linear-gradient(45deg, #FFA116, #FBBC05); }
+.gh-border { background-image: linear-gradient(white, white), linear-gradient(45deg, #333, #000); }
+.hr-border { background-image: linear-gradient(white, white), linear-gradient(45deg, #2EC866, #1BA050); }
+.cc-border { background-image: linear-gradient(white, white), linear-gradient(45deg, #5B4638, #3E2B20); }
